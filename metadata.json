@@ -1,4 +1,7 @@
 {
   "name": "PureTune - Offline Guitar & Bass Tuner",
-  "description": "Ein schlanker, komplett offline arbeitender Tuner für Gitarre und Bass. Datenschutz an erster Stelle."
+  "description": "A sleek, fully offline tuner for guitar and bass. Privacy-first design.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
 }
