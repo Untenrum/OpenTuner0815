@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { usePitchDetector } from './hooks/usePitchDetector';
+import { useReferenceTone } from './hooks/useReferenceTone';
 import { Tuner } from './components/Tuner';
 import { Controls } from './components/Controls';
+import { ReferenceTones } from './components/ReferenceTones';
 import { INSTRUMENTS } from './constants';
 import { findClosestNote, getCents } from './utils/tuning';
 import type { Instrument, Note } from './types';
@@ -17,6 +19,7 @@ const App = () => {
   } | null>(null);
 
   const { pitch, error, start, stop } = usePitchDetector();
+  const { playTone, playingFrequency } = useReferenceTone();
 
   const handleToggleTuner = () => {
     if (isTunerActive) {
@@ -24,6 +27,10 @@ const App = () => {
       setIsTunerActive(false);
       setDetectedNote(null);
     } else {
+      if (playingFrequency) {
+        // This will call stopTone internally
+        playTone(playingFrequency);
+      }
       start();
       setIsTunerActive(true);
     }
@@ -67,6 +74,12 @@ const App = () => {
             instruments={INSTRUMENTS}
             selectedInstrument={selectedInstrument}
             onInstrumentChange={handleInstrumentChange}
+        />
+        <ReferenceTones
+            tuning={selectedInstrument.tunings.Standard}
+            onPlayTone={playTone}
+            playingFrequency={playingFrequency}
+            isDisabled={isTunerActive}
         />
     </div>
   );

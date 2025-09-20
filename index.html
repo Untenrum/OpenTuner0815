@@ -147,7 +147,6 @@
         flex-direction: column;
         gap: 1rem;
         align-items: center;
-        padding-top: 1rem;
       }
 
       .control-button, .instrument-select {
@@ -184,6 +183,62 @@
         color: var(--red);
         text-align: center;
         padding: 1rem;
+      }
+      
+      .reference-tones {
+        width: 100%;
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .reference-tones-title {
+        font-size: 1rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.7;
+        margin: 0 0 1rem 0;
+      }
+      
+      .reference-tones-controls {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      
+      .tone-button {
+        background-color: rgba(255,255,255,0.1);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .tone-button:hover:not(:disabled) {
+        background-color: rgba(255,255,255,0.2);
+        border-color: var(--primary-color);
+      }
+      
+      .tone-button.playing {
+        background-color: var(--primary-color);
+        color: var(--bg-color);
+        border-color: var(--primary-color);
+      }
+      
+      .tone-button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
       }
     </style>
   <script type="importmap">
